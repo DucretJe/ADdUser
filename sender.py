@@ -36,7 +36,7 @@ class Users():
         except:
             self.service = ''
 
-
+        # Creation of sub-attributes from the main one.
         list_name = list(self.name)
         self.firstletter = list_name[0]
         self.SamAccountName = '{}{}'.format(self.firstletter.lower(),self.surname.lower())
@@ -50,12 +50,3 @@ class Users():
     def SendAD(self,target):
         """ This method sends the powershell command to the AD server in order to add a user with the name, surname and title defined for the instance"""
         cmd = subprocess.Popen(["powershell",'Enter-PSSession {} ; New-ADUser -Name "{}" -Surname "{}" -SamAccountName "{}" -UserPrincipalName "{}" -DisplayName "{}" -ChangePasswordAtLogon 1 -Title "{}" -Path "OU=Users,OU={},OU=Services,DC={},DC={}" -AccountPassword(ConvertTo-SecureString p@ssw0rd -AsPlainText -Force) -Enabled $true ; exit'.format(target, self.name,self.surname,self.SamAccountName,self.UserPrincipalName,self.DisplayName,self.title,self.service,self.dc1,self.dc2)])
-
-# michael = {'name':'michael', 'surname':'scott', 'title':'Director', 'domain':'dundermifflin.com', 'service':'direction'}
-# user1 = Users(**michael)
-# user1.SendAD()
-
-#cmd = subprocess.Popen(["powershell", 'ping 8.8.8.8'], stdout=sys.stdout)
-#cmd.communicate()
-#retour = Read-Host
-#os.system("pause")
