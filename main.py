@@ -34,6 +34,7 @@ for widget in window.winfo_children():
 ### 5. Read the Excel File
 users = e.file(excel)
 dictionnary = users.dictionnary
+## 5.a Testing validity of input_message
 
 ### 6. Sending it to the AD
 for u in dictionnary.values():
