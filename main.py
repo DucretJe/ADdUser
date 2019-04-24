@@ -34,11 +34,24 @@ for widget in window.winfo_children():
 ### 5. Read the Excel File
 users = e.file(excel)
 dictionnary = users.dictionnary
-## 5.a Testing validity of input_message0
+## 5.a Testing validity of input_message
+for u in dictionnary.values():
+    check_name = u['name']
+    check_surname = u['surname']
+    expression = r'[a-zA-Z]'
+# Verification of the name
+    while re.search(expression,str(check_name)) is none:
+        messagebox.showwarning('Warning','This name {} is not valid (must contain only letters)'.format(check_name))
+        interface.input_message(window, 'Please correct {} by a name containing only letters'.format(check_name))
+    u['name'] = check_name
+    while re.search(expression,str(check_surname)) is none:
+        messagebox.showwarning('Warning','This name {} is not valid (must contain only letters)'.format(check_surname))
+        interface.input_message(window, 'Please correct {} by a name containing only letters'.format(check_surname))
+    u['name'] = check_surname
+
 
 ### 6. Sending it to the AD
 for u in dictionnary.values():
-    print(u)
     dict = {'name' : u['name'], 'surname' : u['surname'], 'title' : u['title'], 'domain' : u['domain'], 'service' : u['service']}
     instance_user = s.Users(**dict)
     send = instance_user.SendAD(AD)

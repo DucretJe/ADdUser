@@ -91,4 +91,4 @@ class file():
         return dictionnary
 
 
-test = file("Classeur1.xlsx")
+#test = file("Classeur1.xlsx")
