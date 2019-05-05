@@ -39,12 +39,10 @@ dictionnary = users.dictionnary
 
 ### 6. Sending it to the AD
 for u in dictionnary.values():
-    print(u)
     dict = {'name' : u['name'], 'surname' : u['surname'], 'title' : u['title'], 'domain' : u['domain'], 'service' : u['service']}
     instance_user = s.Users(**dict)
     send = instance_user.SendAD(AD)
 
+sys.exit()
 interface.mainloop()
 interface.destroy()
-
-sys.exit()
