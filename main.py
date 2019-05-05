@@ -3,6 +3,7 @@
 import sender as s
 import interface as i
 import excel_reader as e
+import sys
 
 ### 1. Creating interface
 window = i.Tk()
@@ -45,3 +46,5 @@ for u in dictionnary.values():
 
 interface.mainloop()
 interface.destroy()
+
+sys.exit()
